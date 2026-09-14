@@ -15,7 +15,8 @@ const questions = [
     key: "need" as const,
     eyebrow: "First things first",
     title: "What brings you to Site-Wiz?",
-    description: "Choose the option that best describes where your business is today.",
+    description:
+      "Choose the option that best describes where your business is today.",
     options: [
       {
         title: "I need a new website",
@@ -35,7 +36,8 @@ const questions = [
     key: "business" as const,
     eyebrow: "Tell us about it",
     title: "What kind of business do you run?",
-    description: "This helps us understand what your website needs to do.",
+    description:
+      "This helps us understand what your website needs to do.",
     options: [
       {
         title: "Local service business",
@@ -83,7 +85,8 @@ const questions = [
     key: "style" as const,
     eyebrow: "Make it yours",
     title: "What kind of feel should your website have?",
-    description: "Choose the direction that feels closest to your business.",
+    description:
+      "Choose the direction that feels closest to your business.",
     options: [
       {
         title: "Modern",
@@ -148,6 +151,7 @@ export default function GetStarted() {
     preferredContact: "Email",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const totalSteps = questions.length + 1;
   const currentQuestion = questions[step];
@@ -183,15 +187,49 @@ export default function GetStarted() {
     }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
 
-    /*
-      This is currently the visual/interaction layer.
-      We will connect this to the real lead submission endpoint
-      once the frontend experience is finalized.
-    */
-    setSubmitted(true);
+    if (submitting) return;
+
+    setSubmitting(true);
+
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: contact.name,
+          business: contact.business,
+          email: contact.email,
+          phone: contact.phone,
+          preferredContact: contact.preferredContact,
+          need: answers.need,
+          businessType: answers.business,
+          goal: answers.goal,
+          style: answers.style,
+          assets: answers.assets,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit lead");
+      }
+
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Lead submission error:", error);
+
+      alert(
+        "We couldn't send your request right now. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -221,14 +259,7 @@ export default function GetStarted() {
             prefer.
           </p>
 
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="mailto:sales@site-wiz.com"
-              className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-7 text-sm font-bold text-[var(--ink)] transition-transform duration-300 hover:-translate-y-1"
-            >
-              sales@site-wiz.com
-            </a>
-
+          <div className="mt-9 flex justify-center">
             <a
               href="tel:0000000000"
               className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/15 px-7 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-white/10"
@@ -247,6 +278,7 @@ export default function GetStarted() {
       className="relative overflow-hidden bg-[var(--ink)] px-4 py-20 text-white sm:px-6 sm:py-28 lg:px-8 lg:py-32"
     >
       <div className="pointer-events-none absolute -right-40 -top-40 size-[34rem] rounded-full bg-[var(--teal-500)]/10 blur-3xl" />
+
       <div className="pointer-events-none absolute -bottom-40 -left-40 size-[34rem] rounded-full bg-[var(--teal-400)]/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-5xl">
@@ -284,7 +316,10 @@ export default function GetStarted() {
 
           <div className="mt-4 rounded-[2rem] border border-white/10 bg-white/[0.06] p-4 shadow-[0_30px_100px_rgba(0,0,0,0.2)] backdrop-blur-xl sm:p-6 lg:p-8">
             {currentQuestion ? (
-              <div key={currentQuestion.key} className="animate-[reveal-up_0.45s_ease_both]">
+              <div
+                key={currentQuestion.key}
+                className="animate-[reveal-up_0.45s_ease_both]"
+              >
                 <div className="max-w-2xl">
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--teal-400)]">
                     {currentQuestion.eyebrow}
@@ -453,36 +488,30 @@ export default function GetStarted() {
                   <button
                     type="button"
                     onClick={goBack}
-                    className="order-2 inline-flex min-h-14 items-center justify-center rounded-full px-5 text-sm font-bold text-white/45 transition-colors hover:text-white sm:order-1 sm:justify-start"
+                    disabled={submitting}
+                    className="order-2 inline-flex min-h-14 items-center justify-center rounded-full px-5 text-sm font-bold text-white/45 transition-colors hover:text-white disabled:cursor-not-allowed disabled:opacity-40 sm:order-1 sm:justify-start"
                   >
                     ← Back
                   </button>
 
                   <button
                     type="submit"
-                    className="group order-1 inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[var(--teal-400)] px-7 text-sm font-black text-[var(--ink)] shadow-[0_15px_40px_rgba(53,203,184,0.15)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(53,203,184,0.25)] sm:order-2"
+                    disabled={submitting}
+                    className="group order-1 inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[var(--teal-400)] px-7 text-sm font-black text-[var(--ink)] shadow-[0_15px_40px_rgba(53,203,184,0.15)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(53,203,184,0.25)] disabled:cursor-not-allowed disabled:opacity-70 sm:order-2"
                   >
-                    Start My Website
-                    <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
-                      →
-                    </span>
+                    {submitting ? "Sending..." : "Start My Website"}
+
+                    {!submitting && (
+                      <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
+                        →
+                      </span>
+                    )}
                   </button>
                 </div>
               </form>
             )}
           </div>
         </div>
-
-        <p className="mx-auto mt-6 max-w-xl text-center text-xs leading-5 text-white/30">
-          Prefer talking directly? Email{" "}
-          <a
-            href="mailto:sales@site-wiz.com"
-            className="text-white/55 underline decoration-white/20 underline-offset-4 hover:text-white"
-          >
-            sales@site-wiz.com
-          </a>{" "}
-          or call us.
-        </p>
       </div>
     </section>
   );
