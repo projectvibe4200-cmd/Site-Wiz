@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -10,17 +11,13 @@ export default function InteractiveCursor() {
     const cursor = cursorRef.current;
     const glow = glowRef.current;
 
-    if (!cursor || !glow) {
-      return;
-    }
+    if (!cursor || !glow) return;
 
     const finePointer = window.matchMedia(
       "(pointer: fine) and (min-width: 768px)"
     );
 
-    if (!finePointer.matches) {
-      return;
-    }
+    if (!finePointer.matches) return;
 
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
@@ -32,6 +29,10 @@ export default function InteractiveCursor() {
     let glowY = mouseY;
 
     let animationFrame = 0;
+    let isHovering = false;
+
+    const interactiveSelector =
+      "a, button, input, textarea, select, [data-cursor-hover]";
 
     const handleMouseMove = (event: MouseEvent) => {
       mouseX = event.clientX;
@@ -46,59 +47,52 @@ export default function InteractiveCursor() {
       glowY += (mouseY - glowY) * 0.08;
 
       cursor.style.transform =
-        "translate3d(" +
-        cursorX +
-        "px, " +
-        cursorY +
-        "px, 0) translate(-50%, -50%)";
+        `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
 
       glow.style.transform =
-        "translate3d(" +
-        glowX +
-        "px, " +
-        glowY +
-        "px, 0) translate(-50%, -50%)";
+        `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
 
       animationFrame = requestAnimationFrame(animate);
+    };
+
+    const setHoverState = (hovering: boolean) => {
+      if (isHovering === hovering) return;
+
+      isHovering = hovering;
+      cursor.classList.toggle("cursor-active", hovering);
+      glow.classList.toggle("cursor-glow-active", hovering);
     };
 
     const handleMouseOver = (event: MouseEvent) => {
       const target = event.target;
 
-      if (!(target instanceof HTMLElement)) {
-        return;
-      }
+      if (!(target instanceof Element)) return;
 
-      if (
-        target.closest(
-          "a, button, input, textarea, select, [data-cursor-hover]"
-        )
-      ) {
-        cursor.classList.add("cursor-active");
-        glow.classList.add("cursor-glow-active");
-      }
+      setHoverState(Boolean(target.closest(interactiveSelector)));
     };
 
     const handleMouseOut = (event: MouseEvent) => {
-      const target = event.target;
+      const nextTarget = event.relatedTarget;
 
-      if (!(target instanceof HTMLElement)) {
+      if (!(nextTarget instanceof Element)) {
+        setHoverState(false);
         return;
       }
 
-      if (
-        target.closest(
-          "a, button, input, textarea, select, [data-cursor-hover]"
-        )
-      ) {
-        cursor.classList.remove("cursor-active");
-        glow.classList.remove("cursor-glow-active");
-      }
+      setHoverState(Boolean(nextTarget.closest(interactiveSelector)));
+    };
+
+    const handlePointerLeave = () => {
+      setHoverState(false);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseover", handleMouseOver);
     window.addEventListener("mouseout", handleMouseOut);
+    document.documentElement.addEventListener(
+      "mouseleave",
+      handlePointerLeave
+    );
 
     animationFrame = requestAnimationFrame(animate);
 
@@ -106,6 +100,10 @@ export default function InteractiveCursor() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseover", handleMouseOver);
       window.removeEventListener("mouseout", handleMouseOut);
+      document.documentElement.removeEventListener(
+        "mouseleave",
+        handlePointerLeave
+      );
 
       cancelAnimationFrame(animationFrame);
     };
@@ -116,13 +114,13 @@ export default function InteractiveCursor() {
       <div
         ref={glowRef}
         aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-[9998] hidden size-20 rounded-full bg-[var(--teal-400)]/10 opacity-50 blur-2xl transition-[width,height,opacity] duration-300 md:block"
+        className="pointer-events-none fixed left-0 top-0 z-[9998] hidden size-20 rounded-full bg-[#007BA7]/15 opacity-50 blur-2xl transition-[width,height,opacity] duration-300 md:block"
       />
 
       <div
         ref={cursorRef}
         aria-hidden="true"
-        className="site-cursor pointer-events-none fixed left-0 top-0 z-[9999] hidden size-3 rounded-full bg-[var(--teal-500)] shadow-[0_0_0_5px_rgba(17,181,161,0.12)] transition-[width,height,background-color] duration-200 md:block"
+        className="site-cursor pointer-events-none fixed left-0 top-0 z-[9999] hidden size-3 rounded-full bg-[#FF2D95] shadow-[0_0_0_5px_rgba(255,45,149,0.15)] transition-[width,height,background-color] duration-200 md:block"
       />
     </>
   );

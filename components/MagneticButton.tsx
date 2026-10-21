@@ -1,3 +1,4 @@
+
 "use client";
 
 import { ReactNode, useRef } from "react";
@@ -5,7 +6,7 @@ import { ReactNode, useRef } from "react";
 type MagneticButtonProps = {
   children: ReactNode;
   href: string;
-  variant?: "dark" | "teal" | "light";
+  variant?: "dark" | "teal" | "light" | "rose" | "blue";
   className?: string;
 };
 
@@ -20,46 +21,31 @@ export default function MagneticButton({
   const handleMouseMove = (
     event: React.MouseEvent<HTMLAnchorElement>
   ) => {
-    const button = buttonRef.current;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
 
+    const button = buttonRef.current;
     if (!button) return;
 
     const rect = button.getBoundingClientRect();
-
     const x = event.clientX - rect.left - rect.width / 2;
     const y = event.clientY - rect.top - rect.height / 2;
 
-    button.style.transform =
-      "translate(" +
-      x * 0.12 +
-      "px, " +
-      y * 0.12 +
-      "px)";
+    button.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
 
-    const arrow = button.querySelector(
-      "[data-magnetic-arrow]"
-    ) as HTMLElement | null;
+    const arrow = button.querySelector<HTMLElement>("[data-magnetic-arrow]");
 
     if (arrow) {
-      arrow.style.transform =
-        "translate(" +
-        x * 0.08 +
-        "px, " +
-        y * 0.08 +
-        "px)";
+      arrow.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px)`;
     }
   };
 
   const handleMouseLeave = () => {
     const button = buttonRef.current;
-
     if (!button) return;
 
     button.style.transform = "";
 
-    const arrow = button.querySelector(
-      "[data-magnetic-arrow]"
-    ) as HTMLElement | null;
+    const arrow = button.querySelector<HTMLElement>("[data-magnetic-arrow]");
 
     if (arrow) {
       arrow.style.transform = "";
@@ -67,22 +53,40 @@ export default function MagneticButton({
   };
 
   const variants = {
-    dark: "bg-[var(--ink)] border-[var(--ink)]",
-    teal: "bg-[var(--teal-500)] border-[var(--teal-500)]",
-    light: "bg-white border-[var(--line)]",
+    dark: {
+      button: "border-white/15 bg-[#0A0A0A]",
+      text: "text-white",
+      arrow: "bg-white/10 text-white",
+      shadow: "hover:shadow-[0_20px_45px_rgba(0,0,0,0.3)]",
+    },
+    teal: {
+      // Legacy name retained for compatibility; now uses cerulean blue.
+      button: "border-[#007BA7] bg-[#007BA7]",
+      text: "text-white",
+      arrow: "bg-white/15 text-white",
+      shadow: "hover:shadow-[0_20px_45px_rgba(0,123,167,0.25)]",
+    },
+    blue: {
+      button: "border-[#007BA7] bg-[#007BA7]",
+      text: "text-white",
+      arrow: "bg-white/15 text-white",
+      shadow: "hover:shadow-[0_20px_45px_rgba(0,123,167,0.25)]",
+    },
+    rose: {
+      button: "border-[#FF2D95] bg-[#FF2D95]",
+      text: "text-white",
+      arrow: "bg-white/15 text-white",
+      shadow: "hover:shadow-[0_20px_45px_rgba(255,45,149,0.25)]",
+    },
+    light: {
+      button: "border-white/20 bg-white/[0.06]",
+      text: "text-white",
+      arrow: "bg-white/10 text-white",
+      shadow: "hover:shadow-[0_20px_45px_rgba(0,123,167,0.12)]",
+    },
   };
 
-  const textColors = {
-    dark: "text-white",
-    teal: "text-[var(--ink)]",
-    light: "text-[var(--ink)]",
-  };
-
-  const arrowColors = {
-    dark: "bg-white/10 text-white",
-    teal: "bg-[var(--ink)]/10 text-[var(--ink)]",
-    light: "bg-[var(--ink)]/10 text-[var(--ink)]",
-  };
+  const style = variants[variant];
 
   return (
     <a
@@ -90,28 +94,22 @@ export default function MagneticButton({
       href={href}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={
-        "group relative inline-flex min-h-14 items-center justify-center gap-3 overflow-hidden rounded-full border px-6 py-3 text-sm font-black shadow-[0_12px_35px_rgba(9,43,42,0.08)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(9,43,42,0.16)] " +
-        variants[variant] +
-        " " +
-        className
-      }
+      className={[
+        "group relative inline-flex min-h-14 items-center justify-center gap-3 overflow-hidden rounded-full border px-6 py-3 text-sm font-black",
+        "transition-[transform,box-shadow] duration-300 hover:-translate-y-1",
+        "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FF2D95]",
+        style.button,
+        style.shadow,
+        className,
+      ].join(" ")}
     >
-      <span
-        className={
-          "relative z-10 block whitespace-nowrap " +
-          textColors[variant]
-        }
-      >
+      <span className={`relative z-10 block whitespace-nowrap ${style.text}`}>
         {children}
       </span>
 
       <span
         data-magnetic-arrow
-        className={
-          "relative z-10 flex size-7 shrink-0 items-center justify-center rounded-full transition-transform duration-300 " +
-          arrowColors[variant]
-        }
+        className={`relative z-10 flex size-7 shrink-0 items-center justify-center rounded-full transition-transform duration-300 ${style.arrow}`}
         aria-hidden="true"
       >
         <span className="text-base leading-none">→</span>

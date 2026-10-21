@@ -1,36 +1,41 @@
+
+"use client";
+
 import MagneticButton from "@/components/MagneticButton";
+
+const features = [
+  "Development included",
+  "Hosting included",
+  "Support included",
+];
 
 export default function Hero() {
   return (
-    <section
-      id="top"
-      className="relative isolate min-h-screen overflow-hidden px-5 pb-24 pt-20 sm:px-8 sm:pb-28 sm:pt-24 lg:px-12 lg:pb-32 lg:pt-28"
-    >
-      {/* Background glow */}
-      <div
-        className="pointer-events-none absolute -right-40 -top-40 -z-10 size-[38rem] rounded-full blur-3xl"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(53,203,184,0.25), rgba(53,203,184,0) 70%)",
-        }}
-      />
+   
+<section
+  id="top"
+  className="relative isolate overflow-hidden bg-[#0A0A0A] px-5 pb-16 pt-20 text-white sm:px-8 sm:pb-20 sm:pt-24 lg:min-h-screen lg:px-12 lg:pb-20 lg:pt-24"
+>
 
-      <div
-        className="pointer-events-none absolute -bottom-64 -left-40 -z-10 size-[32rem] rounded-full blur-3xl"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(169,238,226,0.3), rgba(169,238,226,0) 70%)",
-        }}
-      />
-
-      {/* Subtle grid */}
+      {/* Background atmosphere */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-16 -z-10 h-[46rem] opacity-30"
+        className="pointer-events-none absolute -right-40 top-10 -z-10 size-[36rem] rounded-full bg-[#007BA7]/15 blur-[120px]"
+      />
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-48 top-[35%] -z-10 size-[30rem] rounded-full bg-[#FF2D95]/[0.07] blur-[120px]"
+      />
+
+      {/* Subtle technical grid */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.12]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(9,43,42,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(9,43,42,0.045) 1px, transparent 1px)",
-          backgroundSize: "70px 70px",
+            "linear-gradient(rgba(0,123,167,0.22) 1px, transparent 1px), linear-gradient(90deg, rgba(0,123,167,0.22) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
           maskImage:
             "linear-gradient(to bottom, black, transparent 85%)",
           WebkitMaskImage:
@@ -38,64 +43,50 @@ export default function Hero() {
         }}
       />
 
-      {/* Animated top signal line */}
+      {/* Top signal line */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 right-0 top-16 h-px overflow-hidden bg-[var(--line)]/60"
+        className="absolute inset-x-0 top-0 h-px overflow-hidden bg-white/10"
       >
-        <div className="h-full w-40 animate-[signal-slide_7s_linear_infinite] bg-gradient-to-r from-transparent via-[var(--teal-500)] to-transparent" />
+        <div className="h-full w-40 animate-[signal-slide_7s_linear_infinite] bg-gradient-to-r from-transparent via-[#FF2D95] to-transparent" />
       </div>
 
-      {/* Main Hero */}
-      <div className="mx-auto grid max-w-7xl items-center gap-14 pt-12 sm:pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pt-8">
-        {/* LEFT */}
-        <div>
-          {/* Status */}
-          <div className="reveal-up mb-7 inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.16em] text-[var(--ink)]">
+      <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        {/* Left: headline and offer */}
+        <div className="relative z-10 max-w-3xl">
+          <div className="reveal-up inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.18em] text-white/80 sm:text-sm">
             <span className="relative flex size-3 items-center justify-center">
-              <span className="absolute size-3 animate-ping rounded-full bg-[var(--teal-400)]/30" />
-              <span className="relative size-2 rounded-full bg-[var(--teal-500)]" />
+              <span className="absolute size-3 animate-ping rounded-full bg-[#FF2D95]/30" />
+              <span className="relative size-2 rounded-full bg-[#FF2D95]" />
             </span>
 
             <span>Professional websites</span>
 
-            <span className="h-4 w-px bg-[var(--line)]" />
+            <span className="h-4 w-px bg-white/20" />
 
-            <span className="text-[var(--teal-600)]">
-              $100/month
-            </span>
+            <span className="text-[#007BA7]">$100/month</span>
           </div>
 
-          {/* Heading */}
-          <h1 className="max-w-5xl text-[clamp(3.8rem,8vw,8rem)] font-black leading-[0.86] tracking-[-0.09em] text-[var(--ink)]">
-            <span className="reveal-up block">
-              Your website
-            </span>
-
-            <span className="reveal-up block [animation-delay:100ms]">
-              shouldn't cost
-            </span>
-
-            <span className="reveal-up block text-[var(--teal-500)] [animation-delay:200ms]">
-              thousands.
-            </span>
+          <h1 className="reveal-up mt-8 text-[clamp(3.2rem,7.5vw,6.8rem)] font-black leading-[0.88] tracking-[-0.075em] text-white [animation-delay:100ms]">
+            Your website
+            <br />
+            shouldn&apos;t cost
+            <br />
+            <span className="text-[#007BA7]">thousands.</span>
           </h1>
 
-          {/* Description */}
-          <p className="reveal-up mt-8 max-w-xl text-base leading-7 text-[var(--muted)] [animation-delay:350ms] sm:text-lg">
-            Site-Wiz gives local businesses a professionally
-            designed, developed and maintained website for{" "}
-            <strong className="font-bold text-[var(--ink)]">
-              $100/month.
-            </strong>
+          <p className="reveal-up mt-7 max-w-2xl text-base leading-7 text-white/60 [animation-delay:200ms] sm:mt-8 sm:text-lg sm:leading-8">
+            Site-Wiz gives local businesses a professionally designed,
+            developed and maintained website for{" "}
+            <span className="font-bold text-white">$100/month.</span>
           </p>
 
-          {/* Buttons */}
-          <div className="reveal-up mt-8 flex w-full flex-col gap-3 [animation-delay:450ms] sm:w-auto sm:flex-row">
+          {/* Calls to action */}
+          <div className="reveal-up mt-8 flex flex-col gap-3 [animation-delay:300ms] sm:flex-row sm:flex-wrap sm:items-center">
             <MagneticButton
               href="#get-started"
-              variant="dark"
-              className="w-full sm:w-auto"
+              variant="teal"
+              className="!border-[#FF2D95] !bg-[#FF2D95] !text-[#0A0A0A] hover:!bg-[#ff59aa]"
             >
               Build My Website — $100/mo
             </MagneticButton>
@@ -103,119 +94,135 @@ export default function Hero() {
             <MagneticButton
               href="#included"
               variant="light"
-              className="w-full sm:w-auto"
+              className="!border-white/15 !bg-white/[0.04] !text-white hover:!border-[#007BA7] hover:!bg-[#007BA7]/10"
             >
-              See What's Included
+              See What&apos;s Included
             </MagneticButton>
           </div>
 
-          {/* Trust points */}
-          <div className="reveal-up mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-[var(--muted)] [animation-delay:550ms]">
-            <span>✓ Development included</span>
-            <span>✓ Hosting included</span>
-            <span>✓ Support included</span>
+          {/* Included features */}
+          <div className="reveal-up mt-7 flex flex-wrap gap-x-5 gap-y-3 [animation-delay:400ms]">
+            {features.map((feature) => (
+              <div
+                key={feature}
+                className="inline-flex items-center gap-2 text-xs font-semibold text-white/50 sm:text-sm"
+              >
+                <span className="text-[#FF2D95]" aria-hidden="true">
+                  ✓
+                </span>
+                {feature}
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* RIGHT */}
-        <div className="relative mx-auto flex aspect-square w-full max-w-[600px] items-center justify-center">
+        {/* Right: pricing orbit graphic */}
+        <div className="relative mx-auto flex aspect-square w-full max-w-[490px] items-center justify-center lg:max-w-none">
+          {/* Blue ambient glow */}
+          <div
+            aria-hidden="true"
+            className="absolute size-[70%] rounded-full bg-[#007BA7]/15 blur-[90px]"
+          />
+
           {/* Outer orbit */}
           <div
             aria-hidden="true"
-            className="absolute inset-[8%] rounded-full border border-[var(--teal-200)]/60"
+            className="absolute inset-[5%] rounded-full border border-[#007BA7]/35"
           />
 
-          {/* Rotating orbit */}
+          {/* Middle orbit */}
           <div
             aria-hidden="true"
-            className="absolute inset-[18%] rounded-full border border-dashed border-[var(--teal-300)]/60 animate-[spin_28s_linear_infinite]"
+            className="absolute inset-[16%] rounded-full border border-dashed border-[#007BA7]/30 animate-[spin_45s_linear_infinite]"
           />
 
           {/* Inner orbit */}
           <div
             aria-hidden="true"
-            className="absolute inset-[30%] rounded-full border border-[var(--line)] animate-[spin_20s_linear_infinite_reverse]"
+            className="absolute inset-[27%] rounded-full border border-[#FF2D95]/20"
           />
 
-          {/* Main circle */}
-          <div className="absolute inset-[30%] rounded-full bg-white shadow-[0_30px_100px_rgba(9,43,42,0.12)]" />
+          {/* Floating orbit markers */}
+          <span className="absolute left-[19%] top-[27%] size-3 rounded-full bg-[#007BA7] shadow-[0_0_24px_rgba(0,123,167,0.6)]" />
 
-          {/* Price */}
-          <div className="relative z-10 text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--muted)]">
+          <span className="absolute right-[17%] top-[37%] size-2.5 rounded-full bg-[#FF2D95] shadow-[0_0_24px_rgba(255,45,149,0.65)]" />
+
+          <span className="absolute bottom-[21%] left-[29%] size-2 rounded-full bg-[#007BA7] shadow-[0_0_20px_rgba(0,123,167,0.6)]" />
+
+          <span className="absolute right-[29%] top-[14%] size-2 rounded-full bg-[#FF2D95]" />
+
+          {/* Central pricing card */}
+          <div className="relative z-10 flex aspect-square w-[53%] flex-col items-center justify-center rounded-full border border-white/10 bg-[#101010]/95 text-center shadow-[0_0_100px_rgba(0,123,167,0.12)] backdrop-blur-xl">
+            <span className="text-[9px] font-black uppercase tracking-[0.24em] text-white/45 sm:text-xs">
               Everything included
-            </p>
+            </span>
 
-            <div className="mt-3 text-[clamp(4rem,10vw,7rem)] font-black leading-none tracking-[-0.1em] text-[var(--ink)]">
+            <div className="mt-3 text-[clamp(3.2rem,7vw,5.8rem)] font-black leading-none tracking-[-0.08em] text-white">
               $100
             </div>
 
-            <p className="mt-2 text-sm font-bold text-[var(--teal-600)]">
+            <span className="mt-3 rounded-full border border-[#FF2D95]/30 bg-[#FF2D95]/10 px-4 py-1.5 text-xs font-bold text-[#FF2D95]">
               / month
-            </p>
+            </span>
           </div>
 
-          {/* =====================================================
-              ORIGINAL FLOATING BADGES
-          ===================================================== */}
-
-          {/* Design */}
-          <div className="float-slow absolute left-[3%] top-[24%] z-30 rounded-full border border-[var(--line)] bg-white px-4 py-2 text-xs font-bold text-[var(--ink)] shadow-[0_10px_30px_rgba(9,43,42,0.1)]">
-            Design
-          </div>
-
-          {/* Development */}
-          <div className="float-reverse absolute right-[1%] top-[18%] z-30 rounded-full border border-[var(--line)] bg-white px-4 py-2 text-xs font-bold text-[var(--ink)] shadow-[0_10px_30px_rgba(9,43,42,0.1)]">
-            Development
-          </div>
-
-          {/* Hosting */}
-          <div className="float-slow absolute bottom-[20%] left-[4%] z-30 rounded-full border border-[var(--line)] bg-white px-4 py-2 text-xs font-bold text-[var(--ink)] shadow-[0_10px_30px_rgba(9,43,42,0.1)] [animation-delay:900ms]">
-            Hosting
-          </div>
-
-          {/* Support */}
-          <div className="float-reverse absolute bottom-[17%] right-[3%] z-30 rounded-full border border-[var(--teal-200)] bg-[var(--teal-50)] px-4 py-2 text-xs font-bold text-[var(--teal-700)] shadow-[0_10px_30px_rgba(9,43,42,0.1)] [animation-delay:1200ms]">
-            Support
-          </div>
-
-          {/* Website Ready */}
-          <div className="float-slow absolute left-[14%] top-[8%] z-30 hidden rounded-2xl border border-white bg-white/90 px-4 py-3 shadow-[0_15px_45px_rgba(9,43,42,0.1)] backdrop-blur sm:block">
+          {/* Floating feature badge: design */}
+          <div className="float-slow absolute left-[0%] top-[31%] z-20 rounded-2xl border border-[#007BA7]/30 bg-[#141414] px-4 py-3 shadow-[0_15px_45px_rgba(0,0,0,0.35)] sm:left-[2%]">
             <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-[var(--teal-500)]" />
+              <span className="size-2 rounded-full bg-[#007BA7]" />
+              <span className="text-xs font-bold text-white">Design</span>
+            </div>
+          </div>
 
-              <span className="text-xs font-black text-[var(--ink)]">
+          {/* Floating feature badge: development */}
+          <div className="float-reverse absolute right-[-1%] top-[25%] z-20 rounded-2xl border border-[#FF2D95]/25 bg-[#141414] px-4 py-3 shadow-[0_15px_45px_rgba(0,0,0,0.35)] sm:right-[0%]">
+            <div className="flex items-center gap-2">
+              <span className="size-2 rounded-full bg-[#FF2D95]" />
+              <span className="text-xs font-bold text-white">
+                Development
+              </span>
+            </div>
+          </div>
+
+          {/* Floating feature badge: hosting */}
+          <div className="float-reverse absolute bottom-[19%] left-[5%] z-20 rounded-2xl border border-[#007BA7]/30 bg-[#141414] px-4 py-3 shadow-[0_15px_45px_rgba(0,0,0,0.35)]">
+            <div className="flex items-center gap-2">
+              <span className="size-2 rounded-full bg-[#007BA7]" />
+              <span className="text-xs font-bold text-white">Hosting</span>
+            </div>
+          </div>
+
+          {/* Floating feature badge: support */}
+          <div className="float-slow absolute bottom-[25%] right-[0%] z-20 rounded-2xl border border-[#FF2D95]/25 bg-[#141414] px-4 py-3 shadow-[0_15px_45px_rgba(0,0,0,0.35)] sm:right-[1%]">
+            <div className="flex items-center gap-2">
+              <span className="size-2 rounded-full bg-[#FF2D95]" />
+              <span className="text-xs font-bold text-white">Support</span>
+            </div>
+          </div>
+
+          {/* Website-ready status */}
+          <div className="float-slow absolute left-[8%] top-[8%] z-20 rounded-full border border-white/10 bg-[#141414] px-4 py-3 shadow-[0_15px_45px_rgba(0,0,0,0.3)] sm:left-[11%]">
+            <div className="flex items-center gap-2">
+              <span className="size-2 rounded-full bg-[#FF2D95]" />
+              <span className="text-xs font-bold text-white">
                 Website ready
               </span>
             </div>
           </div>
 
-          {/* Monthly */}
-          <div className="float-reverse absolute bottom-[7%] left-[16%] z-30 hidden rounded-2xl border border-white bg-white/90 px-4 py-3 shadow-[0_15px_45px_rgba(9,43,42,0.1)] backdrop-blur sm:block">
-            <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--muted)]">
-              Monthly
-            </p>
-
-            <p className="mt-1 text-sm font-black text-[var(--ink)]">
-              $100 / month
-            </p>
+          {/* Monthly status */}
+          <div className="float-reverse absolute bottom-[8%] right-[10%] z-20 rounded-2xl border border-[#007BA7]/25 bg-[#141414] px-4 py-3 shadow-[0_15px_45px_rgba(0,0,0,0.3)] sm:right-[13%]">
+            <span className="block text-[9px] font-black uppercase tracking-[0.18em] text-white/45">
+              Simple pricing
+            </span>
+            <span className="mt-1 block text-sm font-black text-white">
+              $100
+              <span className="ml-1 text-xs font-medium text-white/50">
+                / month
+              </span>
+            </span>
           </div>
-
-          {/* Orbit point */}
-          <div
-            aria-hidden="true"
-            className="absolute left-1/2 top-0 size-3 -translate-x-1/2 rounded-full bg-[var(--teal-500)] shadow-[0_0_0_8px_rgba(17,181,161,0.12)]"
-          />
         </div>
-      </div>
-
-      {/* Scroll cue */}
-      <div className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-[var(--muted)] lg:flex">
-        <span>Scroll to explore</span>
-
-        <span className="flex h-8 w-5 items-start justify-center rounded-full border border-[var(--line)] p-1">
-          <span className="h-1.5 w-1 animate-bounce rounded-full bg-[var(--teal-500)]" />
-        </span>
       </div>
     </section>
   );

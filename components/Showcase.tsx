@@ -1,29 +1,15 @@
+
 "use client";
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const sites = [
-  {
-    image: "/showcase/home-services.png",
-    alt: "Home services website design",
-  },
-  {
-    image: "/showcase/restaurant.png",
-    alt: "Restaurant website design",
-  },
-  {
-    image: "/showcase/professional.png",
-    alt: "Professional services website design",
-  },
-  {
-    image: "/showcase/ecommerce.png",
-    alt: "E-commerce website design",
-  },
-  {
-    image: "/showcase/fitness.png",
-    alt: "Fitness website design",
-  },
+  { image: "/showcase/home-services.png", alt: "Home services website design" },
+  { image: "/showcase/restaurant.png", alt: "Restaurant website design" },
+  { image: "/showcase/professional.png", alt: "Professional services website design" },
+  { image: "/showcase/ecommerce.png", alt: "E-commerce website design" },
+  { image: "/showcase/fitness.png", alt: "Fitness website design" },
 ];
 
 export default function Showcase() {
@@ -36,14 +22,12 @@ export default function Showcase() {
 
   const goNext = () => {
     setDirection("next");
-    setActive((currentIndex) => (currentIndex + 1) % total);
+    setActive((index) => (index + 1) % total);
   };
 
   const goPrevious = () => {
     setDirection("previous");
-    setActive(
-      (currentIndex) => (currentIndex - 1 + total) % total
-    );
+    setActive((index) => (index - 1 + total) % total);
   };
 
   useEffect(() => {
@@ -51,7 +35,7 @@ export default function Showcase() {
 
     const interval = window.setInterval(() => {
       setDirection("next");
-      setActive((currentIndex) => (currentIndex + 1) % total);
+      setActive((index) => (index + 1) % total);
     }, 4500);
 
     return () => window.clearInterval(interval);
@@ -60,68 +44,63 @@ export default function Showcase() {
   return (
     <section
       id="showcase"
-      className="relative overflow-hidden bg-[var(--teal-50)] px-5 py-24 sm:px-8 sm:py-28 lg:px-12 lg:py-32"
+      className="relative isolate overflow-hidden bg-[#0A0A0A] px-5 py-24 text-white sm:px-8 sm:py-28 lg:px-12 lg:py-32"
     >
-      {/* Background glow */}
+      {/* Blue and rose ambient lighting */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-40 top-0 size-[36rem] rounded-full bg-[var(--teal-200)]/30 blur-3xl"
+        className="pointer-events-none absolute -right-40 top-0 -z-10 size-[36rem] rounded-full bg-[#007BA7]/15 blur-[120px]"
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-40 bottom-0 size-[30rem] rounded-full bg-white/70 blur-3xl"
+        className="pointer-events-none absolute -left-40 bottom-0 -z-10 size-[30rem] rounded-full bg-[#FF2D95]/[0.06] blur-[120px]"
       />
 
-      {/* Decorative grid */}
+      {/* Technical grid */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-20"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-30"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(9,43,42,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(9,43,42,0.05) 1px, transparent 1px)",
+            "linear-gradient(rgba(0,123,167,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(0,123,167,0.10) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
-          maskImage:
-            "linear-gradient(to bottom, black, transparent 80%)",
+          maskImage: "linear-gradient(to bottom, black, transparent 80%)",
           WebkitMaskImage:
             "linear-gradient(to bottom, black, transparent 80%)",
         }}
       />
 
       <div className="relative mx-auto max-w-7xl">
-
-        {/* Main content */}
-        <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-
-          {/* LEFT */}
+        <div className="grid items-center gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          {/* Left: section introduction */}
           <div className="max-w-xl">
-            <div className="reveal-up inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.2em] text-[var(--teal-700)]">
+            <div className="reveal-up inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.2em] text-[#FF2D95]">
               <span className="relative flex size-3 items-center justify-center">
-                <span className="absolute size-3 animate-ping rounded-full bg-[var(--teal-400)]/30" />
-                <span className="relative size-2 rounded-full bg-[var(--teal-500)]" />
+                <span className="absolute size-3 animate-ping rounded-full bg-[#FF2D95]/30" />
+                <span className="relative size-2 rounded-full bg-[#FF2D95]" />
               </span>
-
               <span>See the difference</span>
             </div>
 
-            <h2 className="reveal-up mt-6 text-4xl font-black leading-[0.92] tracking-[-0.065em] text-[var(--ink)] [animation-delay:100ms] sm:text-5xl lg:text-6xl">
+            <h2 className="reveal-up mt-6 text-4xl font-black leading-[0.92] tracking-[-0.065em] text-white [animation-delay:100ms] sm:text-5xl lg:text-6xl">
               Your website should sell the business before you do.
             </h2>
 
-            <p className="reveal-up mt-6 max-w-lg text-base leading-7 text-[var(--muted)] [animation-delay:200ms] sm:text-lg">
-              Site-Wiz isn't just about putting your business online.
-              It's about creating an experience that makes visitors
-              understand who you are, what you offer and how to take
-              the next step.
+            <p className="reveal-up mt-6 max-w-lg text-base leading-7 text-white/60 [animation-delay:200ms] sm:text-lg">
+              Site-Wiz isn&apos;t just about putting your business online.
+              It&apos;s about creating an experience that makes visitors
+              understand who you are, what you offer and how to take the next
+              step.
             </p>
 
-            {/* Controls */}
+            {/* Carousel controls */}
             <div className="reveal-up mt-8 flex items-center gap-3 [animation-delay:300ms]">
               <button
                 type="button"
                 onClick={goPrevious}
                 aria-label="Previous website example"
-                className="group grid size-12 place-items-center rounded-full border border-[var(--line)] bg-white text-[var(--ink)] shadow-[0_10px_30px_rgba(9,43,42,0.06)] transition-all duration-300 hover:-translate-x-1 hover:border-[var(--teal-400)] hover:shadow-[0_15px_40px_rgba(9,43,42,0.12)]"
+                className="group grid size-12 place-items-center rounded-full border border-white/10 bg-[#141414] text-white transition-all duration-300 hover:-translate-x-1 hover:border-[#007BA7] hover:bg-[#007BA7]/10"
               >
                 <span className="text-lg transition-transform duration-300 group-hover:-translate-x-0.5">
                   ←
@@ -132,14 +111,13 @@ export default function Showcase() {
                 type="button"
                 onClick={goNext}
                 aria-label="Next website example"
-                className="group grid size-12 place-items-center rounded-full border border-[var(--line)] bg-white text-[var(--ink)] shadow-[0_10px_30px_rgba(9,43,42,0.06)] transition-all duration-300 hover:translate-x-1 hover:border-[var(--teal-400)] hover:shadow-[0_15px_40px_rgba(9,43,42,0.12)]"
+                className="group grid size-12 place-items-center rounded-full border border-white/10 bg-[#141414] text-white transition-all duration-300 hover:translate-x-1 hover:border-[#FF2D95] hover:bg-[#FF2D95]/10"
               >
                 <span className="text-lg transition-transform duration-300 group-hover:translate-x-0.5">
                   →
                 </span>
               </button>
 
-              {/* Progress dots */}
               <div className="ml-2 flex items-center gap-1.5">
                 {sites.map((site, index) => (
                   <button
@@ -150,14 +128,15 @@ export default function Showcase() {
                       setActive(index);
                     }}
                     aria-label={`Show website example ${index + 1}`}
+                    aria-current={index === active ? "true" : undefined}
                     className="group flex size-5 items-center justify-center"
                   >
                     <span
                       className={
                         "rounded-full transition-all duration-300 " +
                         (index === active
-                          ? "size-2.5 bg-[var(--teal-500)]"
-                          : "size-1.5 bg-[var(--teal-200)] group-hover:bg-[var(--teal-400)]")
+                          ? "size-2.5 bg-[#FF2D95]"
+                          : "size-1.5 bg-white/25 group-hover:bg-[#007BA7]")
                       }
                     />
                   </button>
@@ -166,47 +145,56 @@ export default function Showcase() {
             </div>
           </div>
 
-          {/* RIGHT — WEBSITE CAROUSEL */}
+          {/* Right: website carousel */}
           <div
-            className="relative"
+            className="relative min-w-0"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
+            onFocusCapture={() => setPaused(true)}
+            onBlurCapture={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                setPaused(false);
+              }
+            }}
           >
-            {/* Glow */}
+            {/* Blue halo */}
             <div
               aria-hidden="true"
-              className="absolute left-1/2 top-1/2 size-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--teal-200)]/50 blur-3xl"
+              className="absolute left-1/2 top-1/2 size-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#007BA7]/20 blur-[100px]"
             />
 
-            {/* Decorative orbit */}
+            {/* Orbit rings */}
             <div
               aria-hidden="true"
-              className="absolute -inset-5 rounded-[3rem] border border-[var(--teal-200)]/50 sm:-inset-6"
+              className="absolute -inset-4 rounded-[2.5rem] border border-[#007BA7]/25 sm:-inset-6 sm:rounded-[3rem]"
             />
 
             <div
               aria-hidden="true"
-              className="absolute -inset-10 rounded-[4rem] border border-[var(--teal-200)]/30 sm:-inset-12"
+              className="absolute -inset-7 rounded-[3rem] border border-[#FF2D95]/10 sm:-inset-10 sm:rounded-[4rem]"
             />
 
-            {/* Browser */}
-            <div className="relative z-20 overflow-hidden rounded-[1.5rem] border border-white/80 bg-white p-2 shadow-[0_35px_100px_rgba(9,43,42,0.18)] sm:rounded-[1.75rem] sm:p-3">
-
+            {/* Browser frame */}
+            <div className="relative z-20 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#141414] p-2 shadow-[0_35px_100px_rgba(0,0,0,0.55)] sm:rounded-[1.75rem] sm:p-3">
               {/* Browser chrome */}
-              <div className="flex items-center gap-2 rounded-t-[1.1rem] bg-white px-3 py-3 sm:rounded-t-[1.25rem] sm:px-4">
+              <div className="flex items-center gap-2 rounded-t-[1.1rem] border-b border-black/5 bg-white px-3 py-3 sm:rounded-t-[1.25rem] sm:px-4">
                 <span className="size-2.5 rounded-full bg-[#ff6b6b]" />
                 <span className="size-2.5 rounded-full bg-[#ffd166]" />
                 <span className="size-2.5 rounded-full bg-[#35cbb8]" />
 
-                <div className="ml-2 flex h-7 flex-1 items-center justify-center rounded-full bg-[var(--teal-50)]">
-                  <span className="text-[8px] font-bold text-[var(--muted)] sm:text-[9px]">
+                <div className="ml-2 flex h-7 min-w-0 flex-1 items-center justify-center rounded-full bg-[#F1F5F9]">
+                  <span className="truncate text-[8px] font-bold text-[#475569] sm:text-[9px]">
                     yourbusiness.com
                   </span>
                 </div>
               </div>
 
-              {/* Screenshot */}
-              <div className="relative aspect-[16/10] overflow-hidden rounded-b-[1.1rem] bg-white sm:rounded-b-[1.25rem]">
+              {/* Actual website screenshot */}
+              <div
+                className="relative aspect-[16/10] overflow-hidden rounded-b-[1.1rem] bg-[#101010] sm:rounded-b-[1.25rem]"
+                aria-live="polite"
+                aria-atomic="true"
+              >
                 <div
                   key={current.image}
                   className={
@@ -225,20 +213,14 @@ export default function Showcase() {
                     priority={active === 0}
                   />
                 </div>
-
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[var(--teal-500)]/5 via-transparent to-white/10"
-                />
               </div>
             </div>
 
-            {/* Built to convert */}
-            <div className="float-reverse absolute -bottom-4 right-[5%] z-30 rounded-2xl border border-white bg-[var(--ink)] px-4 py-3 text-white shadow-[0_18px_50px_rgba(9,43,42,0.2)]">
+            {/* Floating status badge */}
+            <div className="float-reverse absolute -bottom-4 right-[5%] z-30 rounded-2xl border border-[#FF2D95]/25 bg-[#141414] px-4 py-3 text-white shadow-[0_18px_50px_rgba(0,0,0,0.4)]">
               <div className="flex items-center gap-2">
-                <span className="size-2 animate-pulse rounded-full bg-[var(--teal-400)]" />
-
-                <span className="text-[10px] font-black !text-white">
+                <span className="size-2 animate-pulse rounded-full bg-[#FF2D95]" />
+                <span className="text-[10px] font-black text-white">
                   Built to convert
                 </span>
               </div>
@@ -249,35 +231,35 @@ export default function Showcase() {
               type="button"
               onClick={goPrevious}
               aria-label="Previous website example"
-              className="absolute left-0 top-1/2 z-40 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white bg-[var(--ink)] text-white shadow-[0_15px_40px_rgba(9,43,42,0.2)] transition-all duration-300 hover:scale-110 hover:bg-[var(--teal-500)] sm:size-12"
+              className="absolute left-0 top-1/2 z-40 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-[#0A0A0A] text-white shadow-[0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-300 hover:scale-110 hover:border-[#007BA7] hover:bg-[#007BA7] sm:size-12"
             >
-              <span className="text-lg !text-white">←</span>
+              <span className="text-lg text-white">←</span>
             </button>
 
             <button
               type="button"
               onClick={goNext}
               aria-label="Next website example"
-              className="absolute right-0 top-1/2 z-40 grid size-11 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full border border-white bg-[var(--ink)] text-white shadow-[0_15px_40px_rgba(9,43,42,0.2)] transition-all duration-300 hover:scale-110 hover:bg-[var(--teal-500)] sm:size-12"
+              className="absolute right-0 top-1/2 z-40 grid size-11 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full border border-white/10 bg-[#0A0A0A] text-white shadow-[0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-300 hover:scale-110 hover:border-[#FF2D95] hover:bg-[#FF2D95] sm:size-12"
             >
-              <span className="text-lg !text-white">→</span>
+              <span className="text-lg text-white">→</span>
             </button>
           </div>
         </div>
 
         {/* Bottom statement */}
-        <div className="mt-16 flex flex-col gap-6 border-t border-[var(--line)] pt-8 sm:flex-row sm:items-center sm:justify-between lg:mt-20">
-          <p className="max-w-xl text-sm leading-6 text-[var(--muted)]">
-            Different businesses need different experiences. We build
-            the website around what your business actually needs.
+        <div className="mt-16 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between lg:mt-20">
+          <p className="max-w-xl text-sm leading-6 text-white/55">
+            Different businesses need different experiences. We build the
+            website around what your business actually needs.
           </p>
 
           <a
             href="#get-started"
-            className="group inline-flex w-fit items-center gap-3 rounded-full bg-[var(--ink)] px-6 py-3.5 text-sm font-black !text-white shadow-[0_12px_35px_rgba(9,43,42,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(9,43,42,0.2)]"
+            className="group inline-flex w-fit items-center gap-3 rounded-full bg-[#FF2D95] px-6 py-3.5 text-sm font-black text-[#0A0A0A] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(255,45,149,0.2)]"
           >
-            <span className="!text-white">See what we can build</span>
-            <span className="!text-white transition-transform duration-300 group-hover:translate-x-1">
+            <span>See what we can build</span>
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
           </a>
