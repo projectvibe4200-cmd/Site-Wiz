@@ -1,22 +1,35 @@
 @import "tailwindcss";
 
+
 :root {
+  /* Brand colors */
+  --jet-black: #0A0A0A;
+  --cerulean-blue: #007BA7;
+  --neon-rose: #FF2D95;
+
+  /* Site-wide colors */
   --background: #f7fffd;
-  --foreground: #092b2a;
+--foreground: #092b2a;
 
-  --teal-50: #effcf9;
-  --teal-100: #d8f7f1;
-  --teal-200: #a9eee2;
-  --teal-400: #35cbb8;
-  --teal-500: #11b5a1;
-  --teal-600: #079783;
-  --teal-700: #06776a;
+  --ink: #0A0A0A;
+  --muted: #A3A3A3;
+  --line: #292929;
+  --white: #FFFFFF;
 
-  --ink: #092b2a;
-  --muted: #5d7775;
-  --line: #d7e8e5;
+  /* Supporting surfaces */
+  --surface: #141414;
+  --surface-raised: #1C1C1C;
+  --blue-soft: rgba(0, 123, 167, 0.15);
+  --rose-soft: rgba(255, 45, 149, 0.12);
 
-  --white: #ffffff;
+  /* Compatibility aliases for existing components */
+  --teal-50: #141414;
+  --teal-100: #1C1C1C;
+  --teal-200: #303030;
+  --teal-400: #FF2D95;
+  --teal-500: #007BA7;
+  --teal-600: #00658A;
+  --teal-700: #007BA7;
 
   --radius-sm: 0.75rem;
   --radius-md: 1rem;
