@@ -241,7 +241,7 @@ export default function GetStarted() {
     return (
       <section
         id="get-started"
-        className="relative isolate overflow-hidden bg-[#0A0A0A] px-5 py-24 text-white sm:px-8 lg:px-12 lg:py-32"
+        className="relative isolate overflow-hidden bg-[#24272B] px-5 py-24 text-white sm:px-8 lg:px-12 lg:py-32"
       >
         <div
           aria-hidden="true"
@@ -284,7 +284,7 @@ export default function GetStarted() {
   return (
     <section
       id="get-started"
-      className="relative isolate overflow-hidden bg-[#0A0A0A] px-4 py-20 text-white sm:px-6 sm:py-28 lg:px-8 lg:py-32"
+      className="relative isolate overflow-hidden bg-[#24272B] px-4 py-20 text-white sm:px-6 sm:py-28 lg:px-8 lg:py-32"
     >
       {/* Ambient blue and rose lighting */}
       <div

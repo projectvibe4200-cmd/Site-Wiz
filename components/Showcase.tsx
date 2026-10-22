@@ -44,7 +44,7 @@ export default function Showcase() {
   return (
     <section
       id="showcase"
-      className="relative isolate overflow-hidden bg-[#0A0A0A] px-5 py-24 text-white sm:px-8 sm:py-28 lg:px-12 lg:py-32"
+      className="relative isolate overflow-hidden bg-[#24272B] px-5 py-24 text-white sm:px-8 sm:py-28 lg:px-12 lg:py-32"
     >
       {/* Blue and rose ambient lighting */}
       <div
@@ -231,7 +231,7 @@ export default function Showcase() {
               type="button"
               onClick={goPrevious}
               aria-label="Previous website example"
-              className="absolute left-0 top-1/2 z-40 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-[#0A0A0A] text-white shadow-[0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-300 hover:scale-110 hover:border-[#007BA7] hover:bg-[#007BA7] sm:size-12"
+              className="absolute left-0 top-1/2 z-40 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-[#24272B] text-white shadow-[0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-300 hover:scale-110 hover:border-[#007BA7] hover:bg-[#007BA7] sm:size-12"
             >
               <span className="text-lg text-white">←</span>
             </button>
@@ -240,7 +240,7 @@ export default function Showcase() {
               type="button"
               onClick={goNext}
               aria-label="Next website example"
-              className="absolute right-0 top-1/2 z-40 grid size-11 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full border border-white/10 bg-[#0A0A0A] text-white shadow-[0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-300 hover:scale-110 hover:border-[#FF2D95] hover:bg-[#FF2D95] sm:size-12"
+              className="absolute right-0 top-1/2 z-40 grid size-11 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full border border-white/10 bg-[#24272B] text-white shadow-[0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-300 hover:scale-110 hover:border-[#FF2D95] hover:bg-[#FF2D95] sm:size-12"
             >
               <span className="text-lg text-white">→</span>
             </button>

@@ -10,7 +10,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative isolate overflow-hidden bg-[#0A0A0A] text-white">
+    <footer className="relative isolate overflow-hidden bg-[#24272B] text-white">
       {/* Ambient lighting */}
       <div
         aria-hidden="true"

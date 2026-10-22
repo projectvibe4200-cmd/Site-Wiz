@@ -22,37 +22,57 @@ export default function Header() {
           href="#get-started"
           className="group absolute bottom-[calc(100%+0.65rem)] right-0 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#FF2D95] px-5 text-sm font-black text-[#0A0A0A] shadow-[0_15px_40px_rgba(255,45,149,0.2)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(255,45,149,0.3)] md:hidden"
         >
-          Build My Website <span className="transition-transform group-hover:translate-x-1">→</span>
+          Build My Website
+          <span className="transition-transform group-hover:translate-x-1">
+            →
+          </span>
         </a>
 
         {/* Floating navigation dock */}
-        <div className="flex min-h-[60px] items-center gap-2 rounded-[2rem] border border-white/10 bg-[#0A0A0A]/95 px-2 py-2 shadow-[0_20px_70px_rgba(0,0,0,0.45)] backdrop-blur-2xl sm:min-h-[64px]">
+        <div className="flex min-h-[60px] items-center gap-2 rounded-[2rem] border border-white/10 bg-[#24272B]/95 px-2 py-2 shadow-[0_20px_70px_rgba(0,0,0,0.45)] backdrop-blur-2xl sm:min-h-[64px]">
           {/* Mobile menu button */}
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            className="grid size-11 shrink-0 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#007BA7]/30 md:hidden"
+            className="grid size-11 shrink-0 place-items-center rounded-full bg-white/10 !text-white transition-colors hover:bg-[#007BA7]/30 md:hidden"
           >
             <span className="flex flex-col gap-1.5">
-              <span className={`block h-0.5 w-4 rounded-full bg-white transition-transform ${menuOpen ? "translate-y-1 rotate-45" : ""}`} />
-              <span className={`block h-0.5 w-4 rounded-full bg-white transition-transform ${menuOpen ? "-translate-y-1 -rotate-45" : ""}`} />
+              <span
+                className={`block h-0.5 w-4 rounded-full bg-white transition-transform ${
+                  menuOpen ? "translate-y-1 rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`block h-0.5 w-4 rounded-full bg-white transition-transform ${
+                  menuOpen ? "-translate-y-1 -rotate-45" : ""
+                }`}
+              />
             </span>
           </button>
 
           {/* Mobile wordmark */}
           <div className="flex min-w-0 flex-1 items-center justify-between gap-3 px-2 sm:px-3 md:hidden">
-            <a href="#top" aria-label="Site-Wiz home" className="shrink-0 text-base font-black tracking-[-0.06em] text-white">
+            <a
+              href="#top"
+              aria-label="Site-Wiz home"
+              className="shrink-0 text-base font-black tracking-[-0.06em] !text-white"
+            >
               site<span className="text-[#FF2D95]">-wiz</span>
             </a>
+
             <span className="truncate text-[8px] font-black uppercase tracking-[0.12em] text-white/50 min-[380px]:text-[9px]">
               Websites • Built Different
             </span>
           </div>
 
           {/* Desktop logo */}
-          <a href="#top" aria-label="Site-Wiz home" className="ml-2 hidden shrink-0 transition-transform hover:scale-105 sm:flex">
+          <a
+            href="#top"
+            aria-label="Site-Wiz home"
+            className="ml-2 hidden shrink-0 transition-transform hover:scale-105 sm:flex"
+          >
             <Logo dark compact />
           </a>
 
@@ -62,7 +82,7 @@ export default function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#007BA7]/20 hover:text-white"
+                className="rounded-full px-4 py-2.5 text-sm font-bold !text-white transition-colors hover:bg-[#007BA7]/20 hover:!text-white"
               >
                 {item.label}
               </a>
@@ -75,7 +95,9 @@ export default function Header() {
             className="group hidden min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-[#FF2D95] px-5 text-sm font-black text-[#0A0A0A] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(255,45,149,0.25)] md:inline-flex"
           >
             Build My Website
-            <span className="transition-transform group-hover:translate-x-1">→</span>
+            <span className="transition-transform group-hover:translate-x-1">
+              →
+            </span>
           </a>
         </div>
 
@@ -88,19 +110,21 @@ export default function Header() {
           }`}
           aria-hidden={!menuOpen}
         >
-          <nav className="rounded-[2rem] border border-white/10 bg-[#0A0A0A]/95 p-2 shadow-[0_20px_70px_rgba(0,0,0,0.5)] backdrop-blur-2xl">
-            {[...navigation, { label: "Pricing", href: "#pricing" }].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                tabIndex={menuOpen ? 0 : -1}
-                onClick={() => setMenuOpen(false)}
-                className="flex min-h-12 items-center justify-between rounded-2xl px-5 py-3.5 text-sm font-bold text-white transition-colors hover:bg-[#007BA7]/20"
-              >
-                {item.label}
-                <span className="text-[#FF2D95]">→</span>
-              </a>
-            ))}
+          <nav className="rounded-[2rem] border border-white/10 bg-[#24272B]/95 p-2 shadow-[0_20px_70px_rgba(0,0,0,0.5)] backdrop-blur-2xl">
+            {[...navigation, { label: "Pricing", href: "#pricing" }].map(
+              (item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  tabIndex={menuOpen ? 0 : -1}
+                  onClick={() => setMenuOpen(false)}
+                  className="flex min-h-12 items-center justify-between rounded-2xl px-5 py-3.5 text-sm font-bold !text-white transition-colors hover:bg-[#007BA7]/20 hover:!text-white"
+                >
+                  {item.label}
+                  <span className="!text-[#FF2D95]">→</span>
+                </a>
+              ),
+            )}
           </nav>
         </div>
       </div>

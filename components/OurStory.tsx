@@ -3,7 +3,7 @@ export default function OurStory() {
   return (
     <section
       id="our-story"
-      className="relative isolate overflow-hidden bg-[#0A0A0A] px-5 py-24 text-white sm:px-8 sm:py-28 lg:px-12 lg:py-32"
+      className="relative isolate overflow-hidden bg-[#24272B] px-5 py-24 text-white sm:px-8 sm:py-28 lg:px-12 lg:py-32"
     >
       {/* Ambient brand lighting */}
       <div
