@@ -26,30 +26,29 @@ export default function Hero() {
         className="pointer-events-none absolute -left-48 top-[35%] -z-10 size-[30rem] rounded-full bg-[#FF2D95]/[0.07] blur-[120px]"
       />
 
-     {/* Transparent animated LetterGlitch background */}
-<div
-  aria-hidden="true"
-  className="pointer-events-none absolute inset-0 z-0 overflow-hidden opacity-25"
->
-  
-<LetterGlitch
-  className="h-full w-full"
-  backgroundColor="transparent"
-  baseColor="#38BDF8"
-  glitchColors={["#38BDF8", "#FF2D95", "#00E5FF", "#FF4DAD"]}
-  baseOpacity={0.65}
-  speed={0.8}
-  interactive={true}
-  cursorRadius={180}
-  flow={0.7}
-  edgeFade={0.15}
-  centerFade={0.05}
-  intro={true}
-  dpr={1}
-  style={{ width: "100%", height: "100%" }}
-/>
+      {/* Transparent animated LetterGlitch background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden opacity-25"
+      >
+        <LetterGlitch
+          className="h-full w-full"
+          backgroundColor="transparent"
+          baseColor="#38BDF8"
+          glitchColors={["#38BDF8", "#FF2D95", "#00E5FF", "#FF4DAD"]}
+          baseOpacity={0.65}
+          speed={0.8}
+          interactive={true}
+          cursorRadius={180}
+          flow={0.7}
+          edgeFade={0.15}
+          centerFade={0.05}
+          intro={true}
+          dpr={1}
+          style={{ width: "100%", height: "100%" }}
+        />
+      </div>
 
-</div>
       {/* Technical grid */}
       <div
         aria-hidden="true"
@@ -136,11 +135,13 @@ export default function Hero() {
 
         {/* Animated pricing graphic */}
         <div className="relative mx-auto flex aspect-square w-full max-w-[490px] items-center justify-center lg:max-w-none">
+          {/* Soft background glow */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute size-[70%] rounded-full bg-[#007BA7]/15 blur-[90px] motion-safe:animate-[glow-breathe_6s_ease-in-out_infinite]"
           />
 
+{/* FluidGlass disabled — WebGL was crashing the browser */}
           {/* Outer orbit */}
           <div
             aria-hidden="true"
